@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+
+ db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - mysql:/var/lib/msql     
+    environment:
+      MYSQL_ROOT_PASSWORD: vU1n3r4bl3_p4ssw0rd
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: vU1n3r4bl3_p4ssw0rd
+ 
+ phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+ 
+ wp-cli:
+    image: "wordpress:cli-php7.1"
+    environment:
+      - APACHE_RUN_USER="www-data"
+      - APACHE_RUN_GROUP="www-data"
+    user: 33:33 #extremely important command. This gives permission to add the plugins
+    depends_on:
+      - db
+    # Waiting for 15 seconds for wordpress and mysql to be "ready". Avoiding race condition. 
+    command: >
+      /bin/sh -c '
+      echo "Wait 10 seconds to ensure that mysql is ready.."; 
+      sleep 10;
+      echo "Database should be loaded by now";
+      install;
+      '
+    volumes:
+      - "./:/var/www/html:rw"
+      - "./bin/install.sh:/usr/local/bin/install:ro"
+ 
+ wordpress:
+   build: .
+   depends_on:
+      - db
+   restart: always
+   ports:
+      - "8000:80"
+   environment:
+     WORDPRESS_DB_HOST: db:3306
+     WORDPRESS_DB_USER: user
+     WORDPRESS_DB_PASSWORD: vU1n3r4bl3_p4ssw0rd
+     WORDPRESS_DB_NAME: database
+   volumes:
+    - "./:/var/www/html"
+volumes:
+  mysql: {} 
