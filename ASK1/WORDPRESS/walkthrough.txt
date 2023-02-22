@@ -1,0 +1,41 @@
+
+CHALLENGE 1
+
+ΜΕΡΟΣ 1 - ΑΠΟΚΤΗΣΗ ΚΩΔΙΚΟΥ ΤΟΥ PHPMYADMIN
+(credits : https://www.infosecmatter.com/metasploit-module-library/?mm=auxiliary/scanner/http/phpmyadmin_login)
+1)sudo msfconsole -μπαινουμε στο gui του metasploit
+Πρώτα πρέπει να βρούμε τον κωδικό του root
+2)search phpmyadmin (διαθέσιμα payloads για phpmyadmin)
+3)search type:auxiliary phpmyadmin (συνήθως τα payloads για bruteforce είναι στα auxiliary)
+4)use 0 (login scanner). Το payload αυτό θα σπάσει τον κωδικό του phpmyadmin με bruteforce.
+5)set RHOST 192.168.2.15 (victim IP)
+6)set RPORT 8080 (victim PORT)
+set STOP_ON_SUCCESS true (μόλις βρεθεί ο κωδικός σταματάμε)
+set TARGETURI / (directory του phpmyadmin)
+set PASS_FILE  /../../(τοποθεσία της λίστας που θα χρησιμοποιησουμε για το bruteforce. Η καλύτερη είναι η rockyou.txt - )
+set username root (ξέρουμε το username και ψάχνουμε τον κωδικό)
+run
+Αν όλα πήγαν καλά, έχουμε τον κωδικό.
+Μέσα στο phpmyadmin υπάρχει ένα table που λέγεται Users. Πατώντας πάνω και κοιτώντας τις εγγραφές, βλέπουμε στην εγγραφή 8 τα εξής :
+CBC secretsecretsecr 128
+To CBC είναι το cipher block, το secretsecretsecr είναι κλειδί και το 128 είναι το μέγεθος του κλειδιού.
+Έχουμε ένα κλειδί αλλά δεν ξέρουμε που να το χρησιμοποιήσουμε.
+Το επόμενο βήμα λοιπόν είναι να αποκτήσουμε πρόσβαση στο wordpress μέσω του phpmyadmin
+
+ΜΕΡΟΣ 2 ΕΙΣΟΔΟΣ ΣΤΟ WORDPRESS - ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ ΤΟΥ ADMIN
+(credits : https://firstsiteguide.com/hack-wordpress-complete-guide/)
+Έχουμε μπει στο phpmyadmin και έχουμε πρόσβαση στη βάση του wordpress.
+1) Ψάχνουμε το table που λέγεται wp_users. Αυτός ο πίνακας φυλάει όλους τους χρήστες του wordpress.
+2) Ελέγχουμε το password field. Έχει μια συμβολοσειρά που αναπαριστά τον κωδικό, αλλά είναι κρυπτογραφημένη με MD5 που είναι πολύ δύσκολο να σπάσει. 
+Δεν χρειάζεται όμως να τον σπάσουμε.
+3) Κάνουμε google MD5 generator. Εκεί πατάμε μια συμβολοσειρά (όποια θέλουμε) και κάνουμε copy το αποτέλεσμα.
+4) Πάμε πίσω στο phpmyadmin και κάνουμε edit το password. Κάνουμε paste την νέα μας συμβολοσειρά.
+5) Πάμε στο wordpress και κάνουμε login με το password που βάλαμε.
+Μπήκαμε στο wordpress.
+
+
+ΜΕΡΟΣ 3 ΑΠΟΚΡΥΠΤΟΓΡΑΦΗΣΗ ΤΟΥ ΤΕΛΙΚΟΥ ΜΗΝΥΜΑΤΟΣ 
+Είμαστε πλέον μέσα στο wordpress. Ψάχνοντας λίγο τριγύρω, βλέπουμε ότι στα post υπάρχει μια εγγραφή που λέγεται "Click me".
+Πατώντας εκεί, μπαίνουμε σε μια δημοσίευση και βλέπουμε μια συμβολοσειρά. Χρησιμοποιώντας ένα online εργαλείο αποκρυπτογράφησης AES 
+και τα στοιχεία που μαζέψαμε στο πρώτο κομμάτι (CBC,κλειδί,μήκος κλειδιού) αποκρυπτογραφούμε το μήνυμα και βλέπουμε ότι λέει : 
+"Challenge Solved! Congrats!"
