@@ -12,12 +12,13 @@ session_start();
 <html>
     <head>
         <title>Welcome!</title>
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="styles.css">
+        <style><?php include "styles.css" ?></style>
     </head>
     <body>
-        <h1>Welcome to my Super Secure Website!</h1>
-        <p>Hello <?php echo $user_data['user_name']; ?>
-        <?php include_once 'nav.php'; ?>
+        <?php include_once "nav.php" ?>
+        <h1>Welcome to your Super Secure Account <?php echo $user_data['user_name']?>!</h1>
+        <p class="flag"> HTB{Y0u_4r3_An_SQL_1nj3ct10n_M4st3r} </p>
     </body>
 </html>
 <script src="./index.js"></script>

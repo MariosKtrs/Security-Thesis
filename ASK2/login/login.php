@@ -5,7 +5,6 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 
-
 	if($_SERVER['REQUEST_METHOD'] == "POST"){
 		
 		//something was posted
@@ -18,8 +17,7 @@ session_start();
 		//$query = "select * from users where user_name = '$user_name'";
 			
 		//vulnerable
-		$query = "select user_id from users where user_name = '$user_name' and password='$password'";
-			
+		$query = "select * from users where user_name = '$user_name' and password='$password'";
 		$result = mysqli_query($con, $query);
 
 		if($result){
@@ -27,7 +25,6 @@ session_start();
 			if(mysqli_num_rows($result) > 0){
 
 				$user_data = mysqli_fetch_assoc($result);
-
 				//if ($user_data['password']=== $password){
 					$_SESSION['user_id'] = $user_data['user_id'];
 					header("Location: index.php");
@@ -44,20 +41,21 @@ session_start();
 <html>
     <head>
         <link rel="stylesheet" href="./styles.css">
+		<style><?php include "styles.css" ?></style>
     </head>
     <body>
-        <?php include_once 'nav.php';?>
-        <h2>Welcome back</h2>
+        <?php include_once "nav.php" ?>
+		<h2>Welcome back</h2>
         <form class="box" method="post">
-            <div class="user">
-                <p class = "username">Username: </p>
-                <input name="user_name" type= "text" class="user-text">
-            </div>
-            <div class = "pass">
-                <p class = "password">Password: </p>  
-                <input name="password" type = "password" class = "pass-text">   
-            </div>
-            <input class="log-in-button" type="submit" value="Log in">
-        </form>
-    </body>
+			<div class="user">
+				<p class = "username">Username: </p>
+				<input name="user_name" type= "text" class="user-text">
+			</div>
+			<div class = "pass">
+				<p class = "password">Password: </p>  
+				<input name="password" type = "password" class = "pass-text">   
+			</div>
+			<input class="log-in-button" type="submit" value="Log in">
+        </form> 
+	</body>
 </html>
