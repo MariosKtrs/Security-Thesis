@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+       MYSQL_ROOT_PASSWORD: password
+       MYSQL_DATABASE: login_db
+       MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - "./database:/docker-entrypoint-initdb.d" #sync the table inside the database folder with container
+    restart: always
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+  website:
+    build: .
+    volumes:
+      - ./login/.:/var/www/html/
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+  mysql:

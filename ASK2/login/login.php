@@ -14,10 +14,10 @@ session_start();
 		//read from database
 
 		//safe
-		//$query = "select * from users where user_name = '$user_name'";
+		//$query = "select * from user_table where user_name = '$user_name'";
 			
 		//vulnerable
-		$query = "select * from users where user_name = '$user_name' and password='$password'";
+		$query = "select * from user_table where user_name = '$user_name' and password='$password'";
 		$result = mysqli_query($con, $query);
 
 		if($result){
