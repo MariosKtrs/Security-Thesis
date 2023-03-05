@@ -1,5 +1,5 @@
 <?php 
-
+session_id("Ch4ll3ng3-S0lv3d");
 session_start();
 
 	include("connection.php");
@@ -10,7 +10,6 @@ session_start();
 		//something was posted
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
-
 		//read from database
 
 		//safe
@@ -41,21 +40,24 @@ session_start();
 <html>
     <head>
         <link rel="stylesheet" href="./styles.css">
+		<link rel="icon" href="data:,">
 		<style><?php include "styles.css" ?></style>
     </head>
     <body>
-        <?php include_once "nav.php" ?>
-		<h2>Welcome back</h2>
-        <form class="box" method="post">
-			<div class="user">
-				<p class = "username">Username: </p>
-				<input name="user_name" type= "text" class="user-text">
-			</div>
-			<div class = "pass">
-				<p class = "password">Password: </p>  
-				<input name="password" type = "password" class = "pass-text">   
-			</div>
-			<input class="log-in-button" type="submit" value="Log in">
-        </form> 
+		<div class="login-page">
+			<?php include_once "nav.php" ?>
+			<h2>Welcome back</h2>
+			<form class="box" method="post">
+				<div class="user">
+					<p class = "username">Username: </p>
+					<input name="user_name" type= "text" class="user-text">
+				</div>
+				<div class = "pass">
+					<p class = "password">Password: </p>  
+					<input name="password" type = "password" class = "pass-text">   
+				</div>
+				<input class="log-in-button" type="submit" value="Log in">
+			</form> 
+		</div>
 	</body>
 </html>

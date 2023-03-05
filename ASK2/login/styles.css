@@ -4,8 +4,9 @@
     padding:0;
 }
 
-body{
+.login-page{
     height:100vh;
+    width:100%;
     text-align: center;
     display:flex;
     flex-direction:column;
@@ -15,8 +16,8 @@ body{
 
 .flag{
 text-align: center;
-
 }
+
 h2{
     margin-top:0;
 }
@@ -77,4 +78,24 @@ text-decoration: none;
 }
 a{
     color:white;
+}
+
+.index-box{
+    height:30%;
+    display:flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.sender-id{
+    margin-top:20px;
+    padding:0;
+}
+.index-box > p {
+    margin-top:20px;
+}
+h1{  
+    font-style: italic;
+}
+.submit{
+    margin-top:10px;
 }
