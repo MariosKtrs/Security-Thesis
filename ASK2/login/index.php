@@ -16,14 +16,14 @@ session_start();
         <?php include_once "nav.php" ?>
         <h1>Welcome to your Super Secure Account <?php echo $user_data['user_name']?>!</h1>
         <form class="index-box" method="post">
-            <p>Enter an id and check your emails from that person!</p>
+            <p>Want to stay informed and get updates? Just enter your email below!</p>
             <input class="sender-id" name="sender" type="text">
             <input class="submit" type="submit" name="submit" value="Search"> 
            <?php 
                 if(isset($_POST['submit'])){ 
                     $name = $_POST['sender'];  
-                    echo $name;
-                }
+                    echo "<p> Email $name successfully added!</p>";
+                } 
             ?>
         </form>
     </body>

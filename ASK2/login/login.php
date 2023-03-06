@@ -31,33 +31,40 @@ session_start();
 				//}
 			}
 		}
-			
-			echo "wrong username or password!";
+		
+			$msg =  "wrong username or password!";
 	}
 
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="./login-styles.css">
 		<link rel="icon" href="data:,">
-		<style><?php include "styles.css" ?></style>
+		<style><?php include "login-styles.css" ?></style>
     </head>
     <body>
+	
 		<div class="login-page">
-			<?php include_once "nav.php" ?>
-			<h2>Welcome back</h2>
-			<form class="box" method="post">
-				<div class="user">
-					<p class = "username">Username: </p>
-					<input name="user_name" type= "text" class="user-text">
-				</div>
-				<div class = "pass">
-					<p class = "password">Password: </p>  
-					<input name="password" type = "password" class = "pass-text">   
-				</div>
-				<input class="log-in-button" type="submit" value="Log in">
-			</form> 
+			<div class = "description">
+
+			</div>
+			<div class=wrapper>	
+				<h2>Welcome to SuperSecure Inc.</h2>
+				
+				<form class="box" method="post">
+					<div class="user">
+						<p class = "username">Username: </p>
+						<input name="user_name" type= "text" class="user-text">
+					</div>
+					<div class = "pass">
+						<p class = "password">Password: </p>  
+						<input name="password" type = "password" class = "pass-text">   
+					</div>
+					<input class="log-in-button" type="submit" value="Log in">
+					<p class ="msg"><?php echo $msg?></p>
+				</form> 
+			</div>
 		</div>
 	</body>
 </html>
