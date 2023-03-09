@@ -1,0 +1,7 @@
+Πρώτα κάνουμε clone το repo του ctfd από το github. (git clone https://github.com/CTFd/CTFd.git)
+Mπαίνουμε στο directory του ctfd και τρέχουμε:
+head -c 64 /dev/urandom > .ctfd_secret_key για να φτιάξουμε ένα secret key file
+Τρέχουμε sudo docker-compose up
+
+admin username: admin
+admin password: myst3ri0us_p4ssw0rd$%^&
