@@ -1,2 +1,0 @@
-The CTFd docker image has been cloned from the official CTFd github
-repository (https://github.com/CTFd/CTFd.git). I am not the author of any of the code.
