@@ -7,13 +7,12 @@ RUN apt-get update -y
 RUN apt-get install -y gdb
 
 RUN apt-get install -y lib32z1 libseccomp-dev
-RUN apt-get install -y nano
 
 #clean-up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /home/challenge
 
-COPY vulnerable/ /home/challenge
+COPY vulnerable/a.out /home/challenge
 
 EXPOSE 1337
 
