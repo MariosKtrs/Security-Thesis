@@ -1,3 +1,5 @@
+ΣΗΜΑΝΤΙΚΟ : Πριν κάνουμε οτιδήποτε, βεβαιώνουμε ότι έχουμε την πιο πρόσφατη έκδοση docker. Αλλιώς θα παρουσιαστεί πρόβλημα στο apt-get update κατα το
+χτίσιμο του container.
 gcc -fno-stack-protector -m32 vuln.c (με αυτό τον τρόπο αφαιρούμε το canary protection)
 sudo ./build-docker.sh (τρέχουμε το container)
 sudo docker exec -it challenge /bin/bash (μπαίνουμε στο container)
@@ -24,9 +26,3 @@ c
 Στη θέση του κωδικού βάζουμε τη συμβολοσειρά που πήραμε με την παραπάνω εντολή.
 c
 Πήραμε τη σημαία.
-
-
-
-
-
-
