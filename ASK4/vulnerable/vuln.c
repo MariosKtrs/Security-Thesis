@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int secret_address;
 
 int main(int argc, char **argv) {
