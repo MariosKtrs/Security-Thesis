@@ -1,25 +1,19 @@
-FROM ubuntu:22.04
+# start by pulling the python image
+FROM python:3.8-alpine
 
-#update the container
-RUN apt-get update -y 
+# copy the requirements file into the image
+COPY ./requirements.txt /app/requirements.txt
 
+# switch working directory
+WORKDIR /app
 
-#install gdb to reverse-engineer the file
-RUN apt-get install -y gdb
+# install the dependencies and packages in the requirements file
+RUN pip install -r requirements.txt
 
-<<<<<<< HEAD
-RUN apt-get install -y lib32z1 libseccomp-dev 
-=======
-RUN apt-get install -y lib32z1 libseccomp-dev
->>>>>>> 03f90aa2121dd3f075b9fbe5d8165abe68f9bbfb
+# copy every content from the local file to the image
+COPY . /app
 
-#clean-up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# configure the container to run in an executed manner
+ENTRYPOINT [ "python" ]
 
-RUN mkdir -p /home/challenge
-
-COPY vulnerable/a.out /home/challenge
-
-EXPOSE 1337
-
-CMD ["tail", "-f", "/dev/null"]
+CMD ["app.py"]
