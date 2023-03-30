@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <meta charset="UTF-8">
     <title>FlaskApp</title>
 </head>
 <body>
     <h1>Hello World!</h1>
-    <h2>Welcome to FlaskApp!</h2>
+    <p>Welcome to my Flask Website! There is absolutely nothing vulnerable here...right?</p>
+    <!-- Good job checking the source. I'll tell you a secret. I used Jinja2 -->
     <h3>{{tags}}</h3>
 </body>
 </html>
