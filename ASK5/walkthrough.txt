@@ -1,0 +1,2 @@
+sudo docker image build -t vuln_web_app .
+sudo docker run -p 5052:80  vuln_web_app
