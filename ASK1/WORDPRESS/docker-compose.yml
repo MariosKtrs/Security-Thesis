@@ -5,6 +5,7 @@ services:
     image: mysql:5.7
     volumes:
       - ./database/user_info.sql:/docker-entrypoint-initdb.d/user_info.sql   
+      - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql   
       - mysql:/var/lib/msql
     restart: always  
     healthcheck: 
@@ -50,7 +51,7 @@ services:
    depends_on:
        db:
            condition: service_healthy
-   build: .
+   image: wordpress:php7.1-apache
    restart: always
    ports:
       - "8000:80"

