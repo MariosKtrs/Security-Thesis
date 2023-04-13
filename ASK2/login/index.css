@@ -12,6 +12,14 @@ body{
     font-weight: bold;
     height: 100vh;
 }
+#check-emails{
+    width:150px;
+    display:flex;
+    margin:auto;
+}
+#email-message{
+    color:white;
+}
 .logout{
     display: flex;
     text-decoration: none;
