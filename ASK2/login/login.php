@@ -1,5 +1,5 @@
 <?php 
-session_id("Ch4ll3ng3-S0lv3d");
+session_id("Pr0f3ss1on4l-");
 session_start();
 
 	include("connection.php");

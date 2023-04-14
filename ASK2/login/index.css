@@ -20,6 +20,24 @@ body{
 #email-message{
     color:white;
 }
+table{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+tr{
+    display:flex;
+    align-items: left;
+    justify-content: center;
+    padding:5px;
+    border: 1px solid white;
+    
+}
+td{
+    width:300px;
+    text-align: center;
+}
 .logout{
     display: flex;
     text-decoration: none;

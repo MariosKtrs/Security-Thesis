@@ -13,6 +13,8 @@ credentials του, να γίνει σύγκριση με τα records της β
 πεδία username και password και να αποκτήσει μη εγκεκριμένη πρόσβαση σε 
 λογαριασμό χωρίς να εισάγει τα σωστά credentials.
 
+Μπαίνουμε αρχικά στο localhost:8002 (Η βάση βρίσκεται στο 8081)
+
 Στην συγκεκριμένη άσκηση, η εντολή που χρησιμοποιείται για τον έλεγχο στη βάση είναι : 
 select * from users where user_name = '$user_name' and password = '$password'
 Αν προσθέσουμε την εντολή 'or'1'='1 στο πεδίο password, η παραπάνω εντολή γίνεται :
@@ -26,3 +28,13 @@ select user_id from users where user_name = '$user_name' and password = '' or '1
 δίνουμε session στο χρήστη μόνο αν υπάρχει κωδικός για το δοθέν username. Για να
 γίνει αυτό χρησιμοποιούμε το condition "if ($user_data['password']=== $password)" 
 πάνω από το block κώδικα που δίνει session στον χρήστη.
+
+Όταν μπούμε στο index, το πρώτο πράγμα που βλέπουμε είναι ένα text input field στο οποίο μπορούμε
+να εισάγουμε συμβολοσειρά. Πατώντας την εντολή <script>alert(document.cookie())</script> παίρνουμε το
+session id που μας δίνει την μισή σημαία.
+
+Έπειτα παμε στο πεδίο my emails. Εδώ χρειαζόμαστε άλλο ένα sql injection. Αυτή τη φορά το query
+είναι το εξής : $query = "select * from user_table where email_password = ('$email_password') ";
+Για να το κάνουμε bypass, χρησιμοποιούμε : 'or'1'='1)*/
+Mία από τις εγγραφές λέει ότι πρέπει να σβήσουμε τον πίνακα emails. Για να το κάνουμε αυτό,
+πληκτρολογούμε στο input : ');drop table emails;--'

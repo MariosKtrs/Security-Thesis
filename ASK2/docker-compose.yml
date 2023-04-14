@@ -8,7 +8,7 @@ services:
        MYSQL_DATABASE: login_db
        MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      - "./database:/docker-entrypoint-initdb.d" #sync the table inside the database folder with container
+      - "./database/:/docker-entrypoint-initdb.d" #sync the database inside the database folder with container
     restart: always
     ports:
       - 3306:3306
