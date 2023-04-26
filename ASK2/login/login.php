@@ -11,27 +11,30 @@ session_start();
 		//something was posted
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
+	 	
 		//read from database
 
 		//safe
 		//$query = "select * from user_table where user_name = '$user_name'";
 			
 		//vulnerable
+		
 		$query = "select * from user_table where user_name = '$user_name' and password='$password'";
 		$result = mysqli_query($con, $query);
+		
+			if($result){
+				
+				if(mysqli_num_rows($result) > 0){
 
-		if($result){
-			
-			if(mysqli_num_rows($result) > 0){
-
-				$user_data = mysqli_fetch_assoc($result);
-				//if ($user_data['password']=== $password){
-					$_SESSION['user_id'] = $user_data['user_id'];
-					header("Location: index.php");
-					die;
-				//}
+					$user_data = mysqli_fetch_assoc($result);
+					//if ($user_data['password']=== $password){
+						$_SESSION['user_id'] = $user_data['user_id'];
+						header("Location: index.php");
+						die;
+					//}
+				}
 			}
-		}
+		
 		
 			$msg =  "wrong username or password!";
 	}
