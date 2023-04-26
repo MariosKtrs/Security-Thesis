@@ -4,7 +4,7 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 	$user_data = check_login($con);
-    $result="";
+    	$result="";
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,12 +41,14 @@ session_start();
                <p> <?php  
                         if(isset($_POST['submit_email_password'])){ 
                             $email_password = $_POST['email_password'];  
-                            $query = "select * from user_table where email_password = ('$email_password') ";
+                            $query = "select * from user_table where email_password = ('$email_password') and user_id = '305' ";
                             mysqli_multi_query($con, $query);
                             $result = mysqli_store_result($con);
+                    
                             do{
                                 if($result){
                                     if(mysqli_num_rows($result) > 0){
+                                    	
                                         $query = "SELECT email,text from emails";
                                         try {
                                         $result2 = mysqli_query($con, $query);
