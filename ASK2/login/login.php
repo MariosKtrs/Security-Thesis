@@ -11,7 +11,7 @@ session_start();
 		//something was posted
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
-	 	$id = $_POST['id'];
+	 	
 		//read from database
 
 		//safe
