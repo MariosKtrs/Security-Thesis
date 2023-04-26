@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Apr 14, 2023 at 02:28 PM
+-- Generation Time: Apr 24, 2023 at 02:22 PM
 -- Server version: 5.7.41
 -- PHP Version: 8.1.15
 
@@ -63,7 +63,8 @@ CREATE TABLE `user_table` (
 --
 
 INSERT INTO `user_table` (`id`, `user_id`, `user_name`, `password`, `date`, `email_password`) VALUES
-(1, 135, 'admin', 'a_very_difficult_password_that_nobody_can_guess', '2023-04-14 10:07:46', 's3cr3t');
+(1, 135, 'admin', 'a_very_difficult_password_that_nobody_can_guess', '2023-04-14 10:07:46', 's3cr3t'),
+(2, 205, 'mike', 'a_random_and_insignificant_password_for_an_extra_user', '2023-04-24 14:21:59', 'we_dont_care_about_this_password');
 
 --
 -- Indexes for dumped tables
@@ -98,7 +99,7 @@ ALTER TABLE `emails`
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
