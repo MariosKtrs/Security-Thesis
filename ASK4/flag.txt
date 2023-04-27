@@ -1,1 +1,1 @@
-HTB{D1r3ct0ryTrav3rs3r}
+FLAG{D1r3ct0ry_Trav3rs3r}
