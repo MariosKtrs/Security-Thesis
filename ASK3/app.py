@@ -14,6 +14,6 @@ def home():
         return render_template('index.html') 
     
 if __name__ == "__main__":
-    app.config['SECRET_KEY'] = 'MXD{W4wrov' 
+    app.config['SECRET_KEY'] = 'PPYQ{Q4qdip' 
     port = int(os.environ.get('PORT', 5050))
     app.run(debug=True, host='0.0.0.0', port=port)
