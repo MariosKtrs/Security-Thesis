@@ -1,0 +1,1 @@
+FLAG{Sh3ll_sh0cker}
