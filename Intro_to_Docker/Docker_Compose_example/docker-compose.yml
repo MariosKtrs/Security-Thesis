@@ -1,0 +1,39 @@
+version: '2.1' #docker compose version
+
+#Under services, we can configure all of the different containers that make up the application
+services:
+
+#MySQL
+ db:
+    image: mysql:5.7
+    #Setting configuration values for MYSQL
+    restart: always  #If the container stops for whatever reason, it will restart automatically
+    environment:
+    #Setting configuration values for MYSQL
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    ports:
+      - 3306:3306 #Mapping port 3306 of the host pc to port 3306 of the container
+
+#Wordpress
+ wordpress:
+   image: wordpress:php7.1-apache
+   restart: always
+   ports:
+      - "8000:80" #The port of the host pc needs to be mapped to port 80 which is assigned to the http
+   environment:
+     WORDPRESS_DB_HOST: db:3306 #The database host needs to be the name of the MySQL container and its corresponding port
+     WORDPRESS_DB_USER: root
+     #To achieve the connection with the database, the following configuration values need to match the database's values
+     WORDPRESS_DB_PASSWORD: password
+     WORDPRESS_DB_NAME: database
+   #The wordpress files will be created inside the "wordpress_data" folder and they will then be transferred into the base directory for websites inside the container
+   volumes:
+     - "./wordpress_data:/var/www/html" 
+volumes:
+#Separate volumes for MySQL and wordpress so that the data persist.
+  mysql: {} 
+  wordpress_data: {}
+  
+ 
