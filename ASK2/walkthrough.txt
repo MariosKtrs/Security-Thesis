@@ -30,7 +30,7 @@ select user_id from users where user_name = '$user_name' and password = '' or '1
 πάνω από το block κώδικα που δίνει session στον χρήστη.
 
 Όταν μπούμε στο index, το πρώτο πράγμα που βλέπουμε είναι ένα text input field στο οποίο μπορούμε
-να εισάγουμε συμβολοσειρά. Πατώντας την εντολή <script>alert(document.cookie())</script> παίρνουμε το
+να εισάγουμε συμβολοσειρά. Πατώντας την εντολή <script>alert(document.cookie)</script> παίρνουμε το
 session id που μας δίνει την μισή σημαία.
 
 Έπειτα παμε στο πεδίο my emails. Εδώ χρειαζόμαστε άλλο ένα sql injection. Αυτή τη φορά το query
