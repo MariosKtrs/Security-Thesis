@@ -8,16 +8,14 @@ def encryption(input,shift):
     encr_text="";
 
     # Iterate over each character of the text
-    for i in range(len(input_data)):
-        char = input_data[i]
-        
+    for char in input_data:
         # check if a character is uppercase then encrypt it accordingly 
         if (char.isupper()):
-            encr_text += chr((ord(char) + n-65) % 26 + 65)
+            encr_text += chr((ord(char) + shift-65) % 26 + 65)
         # check if a character is lowercase then encrypt it accordingly 
-        elif (not char.isupper()):
-            encr_text += chr((ord(char) + n-97) % 26 + 97)
-    
+        elif (char.islower()):
+            encr_text += chr((ord(char) + shift-97) % 26 + 97)
+       
     return encr_text
 
 #Opening input file and storing its contents into the input_data variable 
@@ -25,8 +23,8 @@ input = open("FLAG", "r")
 input_data = input.read()
 input.close()
 
-#n = ? Create a script that bruteforces all possible shifts! 
+shift = #? Create a script that bruteforces all possible shifts! 
 
 print("Original Text is : " + input_data)
-print("Shift pattern is : " + str(n))
-print("Cipher Text is : " + encryption(input_data,n))
+print("Shift pattern is : " + str(shift))
+print("Cipher Text is : " + encryption(input_data,shift))
