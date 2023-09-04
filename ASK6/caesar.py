@@ -19,7 +19,7 @@ def encryption(input,shift):
     return encr_text
 
 #Opening input file and storing its contents into the input_data variable 
-input = open("FLAG", "r")
+input = open("key.txt", "r")
 input_data = input.read()
 input.close()
 
