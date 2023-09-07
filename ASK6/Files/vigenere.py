@@ -1,4 +1,4 @@
-#creditd: https://www.codespeedy.com/vigenere-cipher-using-python/#google_vignette
+#credits: https://www.codespeedy.com/vigenere-cipher-using-python/#google_vignette
   
 def encryption(string, key):
     encrypt_text = []
@@ -20,7 +20,7 @@ def encryption(string, key):
 
   
 if __name__ == "__main__": 
-  string = "FLAG{m4st3R_Cryp7t0gr4ph3r}"
-  key = "secret"
+  string = "?" #this is the flag
+  key = "?" #the key found from solving the caesar's encryption
   encrypt_text = encryption(string,key) 
   print("Encrypted message:", encrypt_text)
