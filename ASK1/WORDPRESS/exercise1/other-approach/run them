@@ -4,7 +4,7 @@
 1) MYSQL
 
 build:
-sudo docker build -t wp-mysql
+sudo docker build -t wp-mysql . 
 
 run:
 sudo docker run --name wp-mysql wp-mysql

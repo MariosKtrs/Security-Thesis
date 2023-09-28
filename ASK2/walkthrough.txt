@@ -35,6 +35,6 @@ session id που μας δίνει την μισή σημαία.
 
 Έπειτα παμε στο πεδίο my emails. Εδώ χρειαζόμαστε άλλο ένα sql injection. Αυτή τη φορά το query
 είναι το εξής : $query = "select * from user_table where email_password = ('$email_password') ";
-Για να το κάνουμε bypass, χρησιμοποιούμε : 'or'1'='1)*/
+Για να το κάνουμε bypass, χρησιμοποιούμε : 1') or '1'='1'-- (space μετα τις παυλες)
 Mία από τις εγγραφές λέει ότι πρέπει να σβήσουμε τον πίνακα emails. Για να το κάνουμε αυτό,
 πληκτρολογούμε στο input : ');drop table emails;--'

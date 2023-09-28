@@ -44,22 +44,21 @@ session_start();
                             $query = "select * from user_table where email_password = ('$email_password') and user_id = '305' ";
                             mysqli_multi_query($con, $query);
                             $result = mysqli_store_result($con);
+                    
                             do{
                                 if($result){
-                                    if(mysqli_num_rows($result) > 0){	
+                                    if(mysqli_num_rows($result) > 0){
+                                    	
                                         $query = "SELECT email,text from emails";
+                                        try {
                                         $result2 = mysqli_query($con, $query);
-                                        if ($result2 && mysqli_num_rows($result2) > 0) {
-                                            $query = "SELECT email, text from emails";
-                                            $result2 = mysqli_query($con, $query);
-                                            $emails = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+                                        } catch (mysqli_sql_exception $e) {
+                                            echo "SQL-1nj3ct0r";
+                                        }
+                                        $emails = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                                     }
                                     else
-                                    	//email table does not exist
-                                        echo "SQL-1nj3ct0r";
-                                } 
-                                else 
-                                    echo "Wrong Password"
+                                        echo "Wrong Password!";
                                 }
                             } while (mysqli_more_results($con) && mysqli_next_result($con)); 
                         }
