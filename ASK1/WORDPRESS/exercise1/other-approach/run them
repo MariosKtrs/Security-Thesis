@@ -1,0 +1,50 @@
+
+----SERVER----
+
+1) MYSQL
+
+build:
+sudo docker build -t wp-mysql
+
+run:
+sudo docker run --name wp-mysql wp-mysql
+
+
+
+2) PHPMYADMIN
+
+build:
+sudo docker build -t wp-phpmyadmin .
+
+run:
+sudo docker run --name wp-phpmyadmin --link wp-mysql:db -p 8080:80 wp-phpmyadmin
+
+
+3) WORDPRESS
+
+build:
+sudo docker build -t wp .
+
+run:
+sudo docker run --name wp --link wp-mysql:db -p 8000:80 wp
+
+
+4) WP-CLI
+
+build:
+sudo docker build -t wp-cli .
+
+run:
+sudo docker run -it --name wp-cli --link wp-mysql:db wp-cli
+
+
+
+----ATTACK----
+
+sudo docker run -d -p443:443 --rm --name=ex1-attack ex1-attack
+sudo docker exec -it ex1-attack /bin/bash
+
+
+
+
+
