@@ -41,8 +41,11 @@ sudo docker run -it --name wp-cli --link wp-mysql:db wp-cli
 
 ----ATTACK----
 
-sudo docker run -d -p443:443 --rm --name=ex1-attack ex1-attack
-sudo docker exec -it ex1-attack /bin/bash
+docker stop ex1-attack
+docker container rm ex1-attack
+docker build --tag=ex1-attack .
+docker run -d -p443:443 --rm --name=ex1-attack ex1-attack
+docker exec -it ex1-attack /bin/bash
 
 
 

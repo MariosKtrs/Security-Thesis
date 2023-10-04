@@ -1,5 +1,3 @@
-#credits: https://www.scaler.com/topics/caesar-cipher-python/
-
 #Function that takes the text and the shift number as arguments
 def encryption(input,shift):
     

@@ -1,2 +1,0 @@
-https://blog.logrocket.com/build-deploy-flask-app-using-docker/
-https://medium.com/@nyomanpradipta120/ssti-in-flask-jinja2-20b068fdaeee

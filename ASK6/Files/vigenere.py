@@ -1,5 +1,3 @@
-#credits: https://www.codespeedy.com/vigenere-cipher-using-python/#google_vignette
-  
 def encryption(string, key):
     encrypt_text = []
     for i in range(len(string)):
