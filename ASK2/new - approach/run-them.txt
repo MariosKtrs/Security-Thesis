@@ -1,9 +1,0 @@
-BUILD
-
-sudo docker build -t ex2-mysql .
-sudo docker build -t ex2-phpmyadmin .
-sudo docker build -t ex2-website .
-
-1. docker run --name ex2-mysql -p 3306:3306 ex2-mysql
-2. docker run --name ex2-phpmyadmin -p 8081:80 --link ex2-mysql:db ex2-phpmyadmin
-3. docker run --name ex2-website -p 8002:80 -p 443:443 --link ex2-mysql:db ex2-website

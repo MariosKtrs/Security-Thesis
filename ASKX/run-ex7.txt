@@ -1,0 +1,3 @@
+sudo docker build -t buffer .
+sudo docker run -d --security-opt seccomp=unconfined -p 1337:1337 --rm --name=buffer buffer
+sudo docker exec -it buffer /bin/bash
