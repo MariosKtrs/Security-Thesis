@@ -1,0 +1,10 @@
+Μολις τρεξουμε τον breaker, το κλειδι που παιρνουμε ειναι : fdrsh.
+Αυτό θα βοηθήσει να σπάσουμε την σημαία που είναι κρυπτογραφημένη σε Vigenere : KORY{T9vKly_HuPHA5jImwm6I}.
+Πηγαινοντας στον συνδεσμο : https://cryptii.com/pipes/vigenere-cipher κανουμε τις εξης ρυθμισεις :
+Plaintext : KORY{T9vKly_HuPHA5jImwm6I}
+KEY : fdrsh
+KEY_MODE : REPEAT
+Alphabet : abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 (ουσιαστικα ολους τους χαρακτηρες case sensitive και τους αριθμους που μπορει να περιεχει μια σημαια)
+Case Strategy : Strict (A =/ a) αφού οι σημαιες ειναι case sensitive
+Foreign Chars : Include (αφου η σημαια περιεχει curly brackets παντα οπως και κατω παυλα μερικες φορες) 
+Αποτελεσμα : FLAG{M4st3r_Crypt0gr4ph3r}

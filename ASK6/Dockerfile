@@ -4,17 +4,17 @@ FROM python:3.8-slim
 # Set the working directory to /home
 WORKDIR /home
 
-# Create a "Files" directory inside the container's home directory
-RUN mkdir Files
+# Create a "files" directory inside the container's home directory
+RUN mkdir files
 
-# Set the working directory to "Files"
-WORKDIR /home/Files
+# Set the working directory to "files"
+WORKDIR /home/files
 
 # Copy the contents of the "Files" directory into the container at /home/Files
-COPY Files/ .
+COPY files/ .
 
-#Make all files that end with .py executable
-RUN find . -type f -name "*.py" -exec chmod +x {} \;
+#Make the python file executable
+RUN chmod +x sha5_encrypt.py
 
 # Update the container
 RUN apt-get -y update 

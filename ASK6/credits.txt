@@ -1,2 +1,0 @@
-credits: https://www.scaler.com/topics/caesar-cipher-python/
-#credits: https://www.codespeedy.com/vigenere-cipher-using-python/#google_vignette
