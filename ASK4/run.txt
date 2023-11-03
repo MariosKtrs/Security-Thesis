@@ -1,0 +1,2 @@
+sudo docker image build -t vuln_php .
+sudo docker run -p 8000:80 vuln_php

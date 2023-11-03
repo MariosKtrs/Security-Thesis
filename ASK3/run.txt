@@ -1,0 +1,2 @@
+sudo docker image build -t vuln_flask .
+sudo docker run -p 5050:5050  vuln_flask
