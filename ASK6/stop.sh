@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo docker stop crypt
+sudo docker stop cryptography
