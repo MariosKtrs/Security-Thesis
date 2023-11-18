@@ -4,8 +4,8 @@ from cryptography.hazmat.backends import default_backend
 import binascii
 
 # Ciphertext and AES-128 key
-ciphertext_hex = "a1b2abac8a5e380ded7fae14d7a3f202fd6364e37dc8320399f16141bcfdc9b751ced1471fb31b38051462d201cd0d4c"
-key_hex = "9d9072260d78eb9fd3f950a2cbf0dada"
+ciphertext_hex = "6314f025f4bc624cf9564f2fcc7864f0e6583a63bd989cb05638bcae146e0d1b663fafeaf1ebe24dc838701d35dd6a6d"
+key_hex = "9473e715b15dd07f488c0b6e226ddce7"
 
 # Convert hexadecimal values to bytes
 ciphertext = binascii.unhexlify(ciphertext_hex)
