@@ -11,9 +11,10 @@ key_hex = "9473e715b15dd07f488c0b6e226ddce7"
 ciphertext = binascii.unhexlify(ciphertext_hex)
 key = binascii.unhexlify(key_hex)
 
-# Create the decryptor
-backend = default_backend()
-cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=backend)
+# Create a cipher object using the key and ECB mode
+cipher = Cipher(algorithms.AES(key), modes.ECB())
+
+#Create the decryptor object
 decryptor = cipher.decryptor()
 
 # Decrypt the ciphertext

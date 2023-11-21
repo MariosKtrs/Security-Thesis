@@ -4,14 +4,14 @@ from cryptography.hazmat.backends import default_backend
 import binascii
 
 def decrypt_message(ciphertext_hex, key_hex, iv_hex):
+
     # Convert hexadecimal values to bytes
     ciphertext = binascii.unhexlify(ciphertext_hex)
     key = binascii.unhexlify(key_hex)
     iv = binascii.unhexlify(iv_hex)
 
     # Create the decryptor
-    backend = default_backend()
-    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv))
     decryptor = cipher.decryptor()
 
     # Decrypt the ciphertext
@@ -27,8 +27,8 @@ def decrypt_message(ciphertext_hex, key_hex, iv_hex):
     return original_message
 
 # Example usage:
-ciphertext_hex = "0bf81ae8f75f85b05eb51661158df2daa5a5002391d1cdd1ddc74ec2cb4f0bbc74c70ffbabcdfa8156cc77dc8c3bc86e"
-key_hex = "10d86c0c76d0b6a086edb8b1e51d5947"
-iv_hex = "552b5a95481ea5524fd708c126e0b024"
+ciphertext_hex = "fb7f81da836150a61848b7b30c8394fcebddc706322b0287108136691c4c5be674cf59fad621e34b43277cd634395823"
+key_hex = "94425e60d1fba20b51f0cf35c6e95da3"
+iv_hex = "4ec9d568b90e6ecc1fbb34522974c381"
 decrypted_message = decrypt_message(ciphertext_hex, key_hex, iv_hex)
 print("Decrypted Message:", decrypted_message)

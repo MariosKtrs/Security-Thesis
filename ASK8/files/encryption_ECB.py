@@ -10,22 +10,21 @@ key = secrets.token_bytes(16)
 message = "Here is your second half : _Br3ak3r}"
 message_bytes = message.encode('utf-8')
 
-# Ensure the message is a multiple of 16 bytes (AES block size) using PKCS7 padding
+#Creates a padding object with a block size of 128 bits
 padder = padding.PKCS7(128).padder()
+#Applies the padding to the message to ensure it's a multiple of 16 bytes
 padded_data = padder.update(message_bytes) + padder.finalize()
 
 
-#Using ECB mode for encryption
-cipher = Cipher(algorithms.AES(key), modes.ECB())  # Using ECB mode, change this as needed
+#Using the generated key we create a cipher object in ECB mode
+cipher = Cipher(algorithms.AES(key), modes.ECB())  
 
-# Create the encryptor
+# Creates an encryptor object using the cipher we created before 
 encryptor = cipher.encryptor()
 
-# Encrypt the message
+# Encrypts the padded message using the encryptor
 ciphertext = encryptor.update(padded_data) + encryptor.finalize()
 
-# The 'ciphertext' contains the encrypted message
-print("Encrypted Message:", ciphertext.hex())
 
-# The generated 128-bit key
+print("Encrypted Message:", ciphertext.hex())
 print("AES-128 Key:", key.hex())

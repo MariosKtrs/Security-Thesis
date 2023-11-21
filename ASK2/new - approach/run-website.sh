@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cd website
 sudo docker stop ex2-website
 sudo docker rm ex2-website
 sudo docker build -t ex2-website .
