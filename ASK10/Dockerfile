@@ -38,6 +38,8 @@ RUN npm config set registry http://registry.npmjs.org/ && \
     npm install
 
 RUN npm install body-parser
+RUN npm install cookie-parser
+RUN apt-get install -y nmap
 # Configure Nginx for serving HTML and JS app and proxying to Node.js
 ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 ENV PATH="/usr/local/nginx/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ssl/bin:${PATH}"
