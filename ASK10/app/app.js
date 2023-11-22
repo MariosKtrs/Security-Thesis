@@ -13,10 +13,9 @@ const users = [
     // Add more users if needed
 ];
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/html/login.html'));
+app.get('/login', function(req, res) {
+    res.sendFile(path.join(__dirname, 'html', 'login.html'));
 });
-
 
 app.post('/login', function(req, res) {
     const username = req.body.username;
@@ -27,16 +26,16 @@ app.post('/login', function(req, res) {
     });
 
     if (isValidUser) {
-        res.redirect('/app');
+        res.redirect('/html/index.html');
     } else {
         res.redirect('/login');
     }
 });
 
-app.get('/app', function(req, res){
-    res.sendFile(path.join(__dirname, '/html/index.html'));
+app.get('/html/index.html', function(req, res) {
+    res.sendFile(path.join(__dirname, 'html', 'index.html'));
 });
 
 app.listen(port, '0.0.0.0', function() {
-console.log('App listening at http://localhost:' + port);
+    console.log('App listening at http://localhost:' + port);
 });
