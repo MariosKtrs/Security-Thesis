@@ -29,7 +29,10 @@ RUN mkdir certs
 RUN /usr/local/ssl/bin/openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 365 -nodes -subj "/C=GR/ST=Attica/L=foo/O=UC3M/OU=SSE/CN=poc.heartbleed.sse.uc3m.bar"
 ADD /app/login.html /workdir/html/
 ADD /app/index.html /workdir/html/
+ADD /app/Heartbleed.svg /workdir/html/
+ADD /app/styles.css /workdir/html/
 ADD /app/app.js /workdir/
+
 ADD /app/package.json /workdir/
 
 # Install Node.js dependencies
@@ -45,6 +48,7 @@ ADD nginx.conf /usr/local/nginx/conf/nginx.conf
 ENV PATH="/usr/local/nginx/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ssl/bin:${PATH}"
 RUN apt-get install -y supervisor
 ADD /app/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+WORKDIR /workdir/html/
 
 # Expose ports
 EXPOSE 80 443
