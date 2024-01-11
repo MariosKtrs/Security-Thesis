@@ -27,8 +27,8 @@ def decrypt_message(ciphertext_hex, key_hex, iv_hex):
     return original_message
 
 # Example usage:
-ciphertext_hex = "fb7f81da836150a61848b7b30c8394fcebddc706322b0287108136691c4c5be674cf59fad621e34b43277cd634395823"
-key_hex = "94425e60d1fba20b51f0cf35c6e95da3"
-iv_hex = "4ec9d568b90e6ecc1fbb34522974c381"
+ciphertext_hex = "1f91fedf338935ff8ec6fac6e588cfb0f9716ad55917db4837a24c287aa66a54eeadcc3edccbb694b8a65cf82675da67"
+key_hex = "dccedbea415a20650b2d0c564deced4a"
+iv_hex = "8281180d57a74dfced70c35d98dce93a"
 decrypted_message = decrypt_message(ciphertext_hex, key_hex, iv_hex)
 print("Decrypted Message:", decrypted_message)

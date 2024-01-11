@@ -8,7 +8,7 @@ key = secrets.token_bytes(16)
 iv = secrets.token_bytes(16)
 
 # Original message to be encrypted and conversion to bytes using UTF-8 encoding
-original_message = "Here is you first half : FLAG{43S"
+original_message = "Here is your first half : FLAG{43S"
 message_bytes = original_message.encode('utf-8')
 
 # Ensure the message is a multiple of 16 bytes (AES block size) using PKCS7 padding

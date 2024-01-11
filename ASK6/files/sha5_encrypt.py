@@ -8,3 +8,6 @@ if __name__ == "__main__":
     hashed_word = create_hash(word)
     print("Known Hash:", hashed_word)
 
+
+
+

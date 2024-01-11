@@ -14,7 +14,7 @@ WORKDIR /home/files
 COPY files/ .
 
 #Make the python file executable
-RUN chmod +x encryption_CBC.py encryption_ECB.py
+RUN chmod +x CBC_encryption.txt ECB_encryption.txt
 
 # Update the container
 RUN apt-get -y update 
